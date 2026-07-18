@@ -7,7 +7,7 @@ class AppConstants {
   // Supabase tabloları
   static const String appointmentsTable = 'appointments';
   static const String servicesTable = 'services';
-  static const String barbersTable = 'barbers';
+  static const String barberShopsTable = 'barber_shops';
   static const String reviewsTable = 'reviews';
   static const String workingHoursTable = 'working_hours';
 }

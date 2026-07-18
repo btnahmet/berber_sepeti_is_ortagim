@@ -17,21 +17,21 @@ class GetDailyAppointments
     GetDailyAppointmentsParams params,
   ) {
     return repository.getDailyAppointments(
-      barberId: params.barberId,
+      barberShopId: params.barberShopId,
       date: params.date,
     );
   }
 }
 
 class GetDailyAppointmentsParams extends Equatable {
-  final String barberId;
+  final String barberShopId;
   final DateTime date;
 
   const GetDailyAppointmentsParams({
-    required this.barberId,
+    required this.barberShopId,
     required this.date,
   });
 
   @override
-  List<Object?> get props => [barberId, date];
+  List<Object?> get props => [barberShopId, date];
 }

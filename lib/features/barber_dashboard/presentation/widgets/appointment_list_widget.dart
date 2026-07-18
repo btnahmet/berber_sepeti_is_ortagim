@@ -5,10 +5,13 @@ import 'package:berber_sepeti_is_ortagim/features/barber_dashboard/presentation/
 /// Randevu listesi widget'ı.
 class AppointmentListWidget extends StatelessWidget {
   final List<Appointment> appointments;
+  final DateTime selectedDate;
 
-  const AppointmentListWidget({super.key, required this.appointments});
-
-  @override
+  const AppointmentListWidget({
+    super.key,
+    required this.appointments,
+    required this.selectedDate,
+  });
   Widget build(BuildContext context) {
     if (appointments.isEmpty) {
       return Center(
@@ -37,7 +40,10 @@ class AppointmentListWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       itemCount: appointments.length,
       itemBuilder: (context, index) {
-        return AppointmentCardWidget(appointment: appointments[index]);
+        return AppointmentCardWidget(
+          appointment: appointments[index],
+          selectedDate: selectedDate,
+        );
       },
     );
   }

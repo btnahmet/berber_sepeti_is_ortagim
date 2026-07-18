@@ -10,16 +10,36 @@ abstract class BarberDashboardEvent extends Equatable {
 
 /// Günlük randevuları yükle olayı.
 class LoadDailyAppointmentsEvent extends BarberDashboardEvent {
-  final String barberId;
+  final String barberShopId;
   final DateTime date;
 
   const LoadDailyAppointmentsEvent({
-    required this.barberId,
+    required this.barberShopId,
     required this.date,
   });
 
   @override
-  List<Object?> get props => [barberId, date];
+  List<Object?> get props => [barberShopId, date];
+}
+
+/// Randevu durumu güncelleme olayı.
+class UpdateAppointmentStatusEvent extends BarberDashboardEvent {
+  final String appointmentId;
+  final AppointmentStatus status;
+  final String? notes;
+  final String barberShopId; // Listeyi tekrar yüklemek için
+  final DateTime selectedDate; // Listeyi tekrar yüklemek için
+
+  const UpdateAppointmentStatusEvent({
+    required this.appointmentId,
+    required this.status,
+    this.notes,
+    required this.barberShopId,
+    required this.selectedDate,
+  });
+
+  @override
+  List<Object?> get props => [appointmentId, status, notes, barberShopId, selectedDate];
 }
 
 /// Tarihi değiştir olayı.
@@ -30,4 +50,20 @@ class ChangeDateEvent extends BarberDashboardEvent {
 
   @override
   List<Object?> get props => [newDate];
+}
+
+/// Yeni manuel randevu oluşturma olayı.
+class CreateAppointmentEvent extends BarberDashboardEvent {
+  final Appointment appointment;
+  final String barberShopId; // Listeyi yenilemek için
+  final DateTime selectedDate; // Listeyi yenilemek için
+
+  const CreateAppointmentEvent({
+    required this.appointment,
+    required this.barberShopId,
+    required this.selectedDate,
+  });
+
+  @override
+  List<Object?> get props => [appointment, barberShopId, selectedDate];
 }
